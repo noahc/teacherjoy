@@ -5,7 +5,7 @@ class Holder < ActiveRecord::Base
   validates_length_of :description, maximum: 250
 
   validates :name, presence: true
-  validates :user_id, presence: true
+  #validates :user_id, presence: true
 end
 # == Schema Information
 #

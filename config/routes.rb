@@ -1,6 +1,13 @@
 Teacherjoy::Application.routes.draw do
+  get "users/new"
+
   resources :questions
   resources :holders
+  root :to => 'holders#new'
+
+  match '/signup',  to: 'users#new'
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
