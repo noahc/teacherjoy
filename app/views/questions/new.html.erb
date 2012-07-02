@@ -6,6 +6,8 @@
 	<%= f.label :answer %>
 	<%= f.text_field :answer,  :cols => 140 %>
 
+	<%= f.hidden_field :holder_id, :value => @holder_id %>
+
 	<%= f.submit "Create Question" %>
 
 <% end %>

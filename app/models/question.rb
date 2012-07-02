@@ -1,5 +1,6 @@
 class Question < ActiveRecord::Base
-  attr_accessible :answer, :question, :set_id
+  attr_accessible :answer, :question, :holder_id
+  belongs_to :holder
 
   validates_length_of :question, maximum: 250
   validates_length_of :answer, maximum: 140

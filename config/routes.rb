@@ -2,10 +2,19 @@ Teacherjoy::Application.routes.draw do
   get "users/new"
 
   resources :questions
+  resources :pages
   resources :holders
-  root :to => 'holders#new'
+  resources :users
+  resources :sessions, only: [:new, :create, :destroy]
+  root :to => 'pages#home'
 
   match '/signup',  to: 'users#new'
+  match '/signin',  to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete
+  match '/generate',to: 'holders#generate'
+  match '/about',   to: 'pages#about'
+  match '/contact', to: 'pages#contact'
+  match '/welcome', to: 'holders#welcome'
 
 
   # The priority is based upon order of creation:

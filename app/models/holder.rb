@@ -1,11 +1,13 @@
 class Holder < ActiveRecord::Base
   attr_accessible :description, :name, :user_id
+  has_many :questions
+  belongs_to :user
 
   validates_length_of :name, maximum: 75
   validates_length_of :description, maximum: 250
 
   validates :name, presence: true
-  #validates :user_id, presence: true
+  validates :user_id, presence: true
 end
 # == Schema Information
 #

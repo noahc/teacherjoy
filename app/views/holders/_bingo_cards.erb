@@ -1,0 +1,63 @@
+<h4>Class Room Bingo Instructions</h4>
+	<ol>
+		<li>Lorem Ipsum Blah Blah Blah Blah</li>
+		<li>Lorem Ipsum Blah Blah Blah Blah Do Not kill the children 
+    not matter how stressful it may become!</li>
+	</ol>	
+
+
+<hr>
+<h4>Bingo Card Questions</h4>
+	<ol>
+		<% @bingo_list.each do |question| %>
+			<li><b><%= question.question %></b>
+			<%= question.answer %></li>
+		<% end %>
+	</ol>	
+
+<hr>
+<h4>Bingo Cards for <%= pluralize(@count, 'student') %></h4>
+
+		<% @cards.each do |answer| %>
+
+	<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>B</th>
+      <th>I</th>
+      <th>N</th>
+      <th>G</th>
+      <th>O</th>
+    </tr>
+  <tbody>
+  	
+    <tr>
+    	<% answer[0..4].each do |answer| %>
+      <td><%= answer.answer %></td>
+      <% end %>
+    </tr>
+     <tr>
+    	<% answer[5..9].each do |answer| %>
+      <td><%= answer.answer %></td>
+      <% end %>
+    </tr>
+     <tr>
+    	<% answer[10..14].each do |answer| %>
+      <td><%= answer.answer %></td>
+      <% end %>
+    </tr>
+     <tr>
+    	<% answer[15..19].each do |answer| %>
+      <td><%= answer.answer %></td>
+      <% end %>
+    </tr>
+     <tr>
+    	<% answer[20..24].each do |answer| %>
+      <td><%= answer.answer %></td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
+<% end %>
+
+<hr>

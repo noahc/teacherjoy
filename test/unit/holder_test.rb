@@ -21,12 +21,12 @@ class HolderTest < ActiveSupport::TestCase
   end
 
   test "name must not be blank" do
-    holder = Holder.new(name: "    ")
+    holder = Holder.new(name: "    ", user_id: 10)
     assert !holder.valid?
   end
 
   test "name must not be nil" do
-    holder = Holder.new(name: nil)
+    holder = Holder.new(name: nil, user_id: 10)
     assert !holder.valid?
   end
   

@@ -10,6 +10,7 @@ class QuestionsController < ApplicationController
 
 	def new
 		@question = Question.new
+		@holder_id = params[:holder_id]
 	end
 
 	def create
