@@ -26,8 +26,10 @@ class HoldersController < ApplicationController
 	def update
 		@holder = Holder.find(params[:id])
     if @holder.update_attributes(params[:holder])
-    	flash[:success] = "holder updated"
-			redirect_to holders_path 
+  		respond_to do |format|
+    		format.html { redirect_to holders_path } #, flash[:success] = "holder updated")
+    		# format.js
+  		end
 		else
       render 'edit'
     end

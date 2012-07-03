@@ -1,14 +1,4 @@
-<div class="row">
-
-<div class="span6">
-<% if @holders.empty?%>
-  <h3>Time to Create your First Set</h3>
-  <p>A set is a container for questions you'd like to group together. They might "American Presidents of the 20th century" or "Fun Facts About Mammals".
-  Don't worry too much about getting this part right. You can always edit it later.</p>
-<% else %>
-<div id="holders">
-  <% @holders.each do |holder| %>
-  <b><%= holder.name %></b> 
+<b><%= holder.name %></b> 
   <li class="dropdown" id="<%= holder.name %>" class="editmenu">
     <a class="dropdown-toggle" data-toggle="dropdown" href="<%= holder.name %>">
       <small>Edit</small>
@@ -29,19 +19,3 @@
   <li class="dropdown">| <%= link_to "Delete", holder_path(holder), method: "delete"%></li>
     <p><%= holder.description %></p>
   <hr>
-<% end %>
-
-</div>
-
-<% end %>
-
-
-  
-    
-  </div>
-
-  <div class="span">
-    <%= render 'create_set' %>
-</div>
-
-</div>
