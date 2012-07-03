@@ -14,7 +14,6 @@ Teacherjoy::Application.routes.draw do
   match '/generate',to: 'holders#generate'
   match '/about',   to: 'pages#about'
   match '/contact', to: 'pages#contact'
-  match '/welcome', to: 'holders#welcome'
 
 
   # The priority is based upon order of creation:

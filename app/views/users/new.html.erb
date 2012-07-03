@@ -1,13 +1,24 @@
-<%= form_for(@user) do |f| %> 
-	<%= f.label :name %>
-	<%= f.text_field :name %> 
+<div class="row">
+	<div class="span6">
+		<h1>Welcome To TeacherJoy
+		<p>Thanks for Choosing TeacherJoy. 
+		<p>We're almost there now.</p> 
+		<p>Create your account to the right, and you'll be well on your way. </p>
+		<p>Only sign up though if you're ready to save time, increase classroom engagement, and making teaching more fun for you and your students! Let us know how we can help anytime!</p>
+	</div>
+	<div class="span3">
+		<%= form_for(@user) do |f| %> 
+		<%= f.label :name %>
+		<%= f.text_field :name %> 
 
-	<%= f.label :email %>
-	<%= f.text_field :email %> 
+		<%= f.label :email %>
+		<%= f.text_field :email %> 
 
-	<%= f.label :password %>
-	<%= f.password_field :password %>
+		<%= f.label :password %>
+		<%= f.password_field :password %>
 
-	<%= f.label :password_confirmation, "Confirmation" %>
-	<%= f.password_field :password_confirmation %>
-<%= f.submit "Create my account", class: "btn btn-large btn-primary" %> <% end %>
+		<%= f.label :password_confirmation, "Confirmation" %>
+		<%= f.password_field :password_confirmation %>
+		<%= f.submit "Create my account", class: "btn btn-large btn-primary" %> <% end %>
+	</div>
+</div>

@@ -8,11 +8,6 @@ class HoldersController < ApplicationController
 		@holder = Holder.new
 	end
 
-	def welcome
-		@holder = Holder.new
-	end
-
-
 	def create
 		@holder = Holder.new(params[:holder])
 		@holder.user_id = current_user.id

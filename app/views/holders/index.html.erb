@@ -1,7 +1,10 @@
 <div class="row">
 
-	<div class="span6">
-		<% @holders.each do |holder| %>
+<div class="span6">
+<% if @holders.empty?%>
+  <h1>Time to Create your First Set</h1>
+<% else %>
+<% @holders.each do |holder| %>
   <b><%= holder.name %></b> 
   <li class="dropdown" id="<%= holder.name %>" class="editmenu">
     <a class="dropdown-toggle" data-toggle="dropdown" href="<%= holder.name %>">
@@ -24,6 +27,11 @@
     <p><%= holder.description %></p>
   <hr>
 <% end %>
+<% end %>
+
+
+	
+		
 	</div>
 
 	<div class="span">

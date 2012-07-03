@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 		if @user.save
       sign_in(@user)
 			flash[:success] = "User Created!"
-      redirect_to welcome_path
+      redirect_to holders_path
 		else
 			render 'new'
 		end
