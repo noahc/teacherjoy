@@ -1,0 +1,11 @@
+<%= form_for(@question)  do |f| %>
+<%= f.label :question %>
+<%= f.text_field :question,  :cols => 125, :rows => 4  %>
+      
+<%= f.label :answer %>
+<%= f.text_field :answer,  :cols => 140 %>
+
+<%= f.hidden_field :holder_id, :value => @holder.id %>
+<br />
+      <%= f.submit "Submit" %>
+    <% end %>
