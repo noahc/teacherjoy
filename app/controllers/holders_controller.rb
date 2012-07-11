@@ -1,7 +1,4 @@
 class HoldersController < ApplicationController
-
-
-
 	def index
 		@holder = Holder.new
 		@holders = Holder.find_all_by_user_id(current_user.id)
@@ -46,7 +43,6 @@ class HoldersController < ApplicationController
     if current_user.id != @holder.user_id
           redirect_to holders_path
     end
-		@holder = Holder.find(params[:id])
 		@questions = Question.find_all_by_holder_id(@holder)
 		@question = Question.new
 	end
