@@ -15,12 +15,8 @@ class QuestionsControllerTest < ActionController::TestCase
 
 	test "should create question" do
 		assert_difference('Question.count') do
-    	post :create, question: { question: 'apple', answer: "good"}
+    	post :create, question: { question: 'apple', answer: "good", holder_id: 2}
   	end
-
- 		assert_redirected_to question_path(assigns(:question))
- 		assert_equal 'Question Saved', flash[:success]
-
 	end
 
 	test "should not create question" do
@@ -32,13 +28,4 @@ class QuestionsControllerTest < ActionController::TestCase
 
 	 	assert_template 'new'
 	end
-
-	test "should get show" do
-		get :show, {id: questions(:prez_one).id}
-		assert_response :success
-		assert_not_nil assigns(:question)
-	end
-
-
-
 end

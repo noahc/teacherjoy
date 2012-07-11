@@ -16,10 +16,10 @@ class HoldersControllerTest < ActionController::TestCase
 
 	test "should create holder" do
 		assert_difference('Holder.count') do
-    	post :create, holder: { name: 'apple', user_id: 10}
+    	post :create, holder: { name: 'apple', user_id: 10, prints: 3}
   	end
 
- 		assert_redirected_to holder_path(assigns(:holder))
+ 		assert_redirected_to holders_path
  		assert_equal 'Set Created!', flash[:success]
 
 	end
@@ -32,8 +32,9 @@ class HoldersControllerTest < ActionController::TestCase
 	end
 
 	test "should update holder" do
-		holder = Holder.create(name: "name", user_id: 10)
+		holder = Holder.create(name: "name", user_id: 10, prints: 3)
 		put :update, id: holder
-    assert_redirected_to holder_path(assigns(:holder))
+    assert_redirected_to holders_path
+    assert_equal 'Set Updated!', flash[:success]
 	end
 end

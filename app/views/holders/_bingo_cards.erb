@@ -1,26 +1,41 @@
+
 <h4>Class Room Bingo Instructions</h4>
 	<ol>
-		<li>Lorem Ipsum Blah Blah Blah Blah</li>
-		<li>Lorem Ipsum Blah Blah Blah Blah Do Not kill the children 
-    not matter how stressful it may become!</li>
+		<li>Distribute one card to each student.</li>
+		<li>The list of questions below is already randomized so that you can begin at the top and contine reading down the list until a student declares they've won</li>
+    <li>Once a student has called out bingo, check their work and then declare them the winner</li>
 	</ol>	
+  <h5>Various Types of Bingo Games</h5>
+  <p> There are various ways to play bingo with your students. Consider playing various games at once</p>
+  <ul>
+    <li>Bingo can be played in a number of ways:</li>
+    <li>Traditional Bingo: Five in a row either across, up and down, or via diagnoal corners</li>
+    <li>Blackout Bingo: Must cover all squares. This is very exciting for students, because most students get very close to winning. This is not a good version to play when you have less than 50 questions however.</li>
+    <li>T Bingo: The center column going either horizontal or verticle and then an appropriate side to form a T. Often the bottom row with the center column isn't considered a win.</li>
+    <li>U Bingo: This is similiar to T bingo. The goal is to create a "U" shape via the outermost sides. The goal is to fill in any three outermost rows or columns.</li>
+    <li>Square Bingo: Square bingo is U bingo, with one more side requirment needed, thus requirng all 4 sides filled in to form a square.</l>
+  </ul> 
 
 
 <hr>
 <h4>Bingo Card Questions</h4>
 	<ol>
+
 		<% @bingo_list.each do |question| %>
+         <br />
 			<li><b><%= question.question %></b>
 			<%= question.answer %></li>
+       <br />
 		<% end %>
+
 	</ol>	
 
-<hr>
-<h4>Bingo Cards for <%= pluralize(@count, 'student') %></h4>
+  <h4>Bingo Cards for <%= pluralize(@count, 'student') %></h4>
+    
+    <% @cards.each do |answer| %>
+ 
 
-		<% @cards.each do |answer| %>
-
-	<table class="table table-bordered">
+  <table class="table table-bordered">
   <thead>
     <tr>
       <th>B</th>
@@ -30,29 +45,29 @@
       <th>O</th>
     </tr>
   <tbody>
-  	
+    
     <tr>
-    	<% answer[0..4].each do |answer| %>
+      <% answer[0..4].each do |answer| %>
       <td><%= answer.answer %></td>
       <% end %>
     </tr>
      <tr>
-    	<% answer[5..9].each do |answer| %>
+      <% answer[5..9].each do |answer| %>
       <td><%= answer.answer %></td>
       <% end %>
     </tr>
      <tr>
-    	<% answer[10..14].each do |answer| %>
+      <% answer[10..14].each do |answer| %>
       <td><%= answer.answer %></td>
       <% end %>
     </tr>
      <tr>
-    	<% answer[15..19].each do |answer| %>
+      <% answer[15..19].each do |answer| %>
       <td><%= answer.answer %></td>
       <% end %>
     </tr>
      <tr>
-    	<% answer[20..24].each do |answer| %>
+      <% answer[20..24].each do |answer| %>
       <td><%= answer.answer %></td>
       <% end %>
     </tr>
@@ -60,4 +75,3 @@
 </table>
 <% end %>
 
-<hr>

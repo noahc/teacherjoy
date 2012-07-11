@@ -1,11 +1,15 @@
 <h3>Create New Set</h3>
 	<%= form_for(@holder) do |f| %> 
+	<%= render 'shared/error_messages', object: f.object %>
 
 	<%= f.label :name %>
 	<%= f.text_field :name, size: 75 %> 
 
 	<%= f.label :description %>
 	<%= f.text_area :description, cols: 50, rows: 5 %> 
+
+  <%= f.label "Student Count" %>
+  <%= f.text_field :prints, cols: 5%> 
 	<br>
 
 	<%= f.submit "Create My Set"%> 

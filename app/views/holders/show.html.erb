@@ -1,55 +1,59 @@
 <div class="row">
+  <div class="span8">
+    <% if @questions.empty? %>
+      <h3>Let's add some questions</h3>
+    <% else %>
+    <h3>Questions List</h3>
+    <div class="questions">
+       <% @questions.each do |question| %>
+        <%= question.question %> 
+        <li class="dropdown" id="<%= question.id %>" class="editmenu">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="<%= question.id %>">
+          <small>Edit</small>
+        </a>
+        <ul class="dropdown-menu menupadding">
+          <li>
+           <%= form_for(question) do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
 
-	<div class="span8">
-		<h3>Questions List</h3>
-		<% @questions.each do |question| %>
-	<%= question.question %> 
-	<%= link_to "Edit", edit_question_path(question) %> | 
-	<%= link_to "Delete", question_path(question), method: "delete"%>
-	<br />
+            <%= f.label :question %>
+            <%= f.text_field :question,  :cols => 125, :rows => 4  %>
+      
+            <%= f.label :answer %>
+            <%= f.text_field :answer,  :cols => 140 %>
 
-	<b><%= question.answer %></b>
-	<hr>
-	
-	<br />
-<% end %>
+            <%= f.hidden_field :holder_id, :value => @holder.id %>
+            <br />
+            <%= f.submit "edit Question", remote: true %>
+          <% end %>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">| <%= link_to "Delete", question_path(question), method: "delete"%></li>
+      <br />
+      <b><%= question.answer %></b>
+      <hr>
+      <% end %>
+     <% end %>
+    </div>
+    
+  </div>
+  <div class="span3">
+      <%= link_to "Generate Activity Worksheets(PDF)", holder_path(@holder, :format => 'pdf'), class: "btn btn-primary btn-large" %>
+     <h3>Add a Question</h3>
+     <%= form_for(@question)  do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
 
-	</div>
+      <%= f.label :question %>
+      <%= f.text_field :question,  :cols => 125, :rows => 4  %>
+      
+      <%= f.label :answer %>
+      <%= f.text_field :answer,  :cols => 140 %>
 
-<h3>Add a Question</h3>
- 	
-   <%= form_for(@question)  do |f| %>
+      <%= f.hidden_field :holder_id, :value => @holder.id %>
+      <br />
 
-	<%= f.label :question %>
-	<%= f.text_field :question,  :cols => 125, :rows => 4  %>
-
-	<%= f.label :answer %>
-	<%= f.text_field :answer,  :cols => 140 %>
-
-	<%= f.hidden_field :holder_id, :value => @holder.id %>
-	<br />
-
-	<%= f.submit "Create Question" %>
-
-<% end %>
-  <h3>Generate Lesson Plan</h3>
-
-   <%= form_tag(:controller => "/holders", :action=> "generate", :holder_id => @holder.id, format: "pdf") do %>
-<%= label_tag(:count, "How Many Students?") %>
-  <%= text_field_tag(:count) %>
-  <%= submit_tag("Generate Course Lesson") %>
-<% end %>
-
-
-
-
-
-
-
-
+      <%= f.submit "Create Question" %>
+    <% end %>
+  </div>
 </div>
-
-
-
-
-

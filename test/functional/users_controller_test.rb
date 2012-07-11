@@ -24,7 +24,7 @@ class UsersControllerTest < ActionController::TestCase
 									   password_confirmation: "foobar3" }
   	end
 
- 		assert_redirected_to user_path(assigns(:user))
+ 		assert_redirected_to holders_path
  		assert_equal 'User Created!', flash[:success]
 	end
 

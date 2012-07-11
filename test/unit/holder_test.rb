@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'pp'
+
 
 class HolderTest < ActiveSupport::TestCase
  
@@ -16,22 +16,22 @@ class HolderTest < ActiveSupport::TestCase
   end
 
   test "name must be present" do
-    holder = Holder.new(name: "name", user_id: 10)
+    holder = Holder.new(name: "name", user_id: 10, prints: 1)
     assert holder.valid?
   end
 
   test "name must not be blank" do
-    holder = Holder.new(name: "    ", user_id: 10)
+    holder = Holder.new(name: "    ", user_id: 10, prints: 1)
     assert !holder.valid?
   end
 
   test "name must not be nil" do
-    holder = Holder.new(name: nil, user_id: 10)
+    holder = Holder.new(name: nil, user_id: 10, prints: 1)
     assert !holder.valid?
   end
   
   test "user_id must be present" do
-    holder = Holder.new(user_id: 10, name: "name")
+    holder = Holder.new(user_id: 10, name: "name", prints: 1)
     assert holder.valid?
   end
 
@@ -39,6 +39,37 @@ class HolderTest < ActiveSupport::TestCase
     holder = Holder.new()
     assert !holder.valid?
   end
+
+  test "prints must be great than 0" do
+    holder = Holder.new(user_id: 10, name: "name", prints: 1)
+    assert holder.valid?
+  end
+
+    test "prints must be less than 100" do
+    holder = Holder.new(user_id: 10, name: "name", prints: 99)
+    assert holder.valid?
+  end
+
+    test "prints must be present" do
+    holder = Holder.new(user_id: 10, name: "name")
+    assert !holder.valid?
+  end
+
+    test "prints must not be negative" do
+    holder = Holder.new(user_id: 10, name: "name", prints: -1)
+    assert !holder.valid?
+  end
+
+    test "prints must not be too big" do
+    holder = Holder.new(user_id: 10, name: "name", prints: 234231)
+    assert !holder.valid?
+  end
+
+     test "prints must not be a number" do
+    holder = Holder.new(user_id: 10, name: "name", prints: "a")
+    assert !holder.valid?
+  end
+
 
 end
 # == Schema Information
@@ -51,5 +82,6 @@ end
 #  description :string(255)
 #  created_at  :datetime        not null
 #  updated_at  :datetime        not null
+#  prints      :integer
 #
 

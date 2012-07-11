@@ -1,4 +1,7 @@
 class HoldersController < ApplicationController
+
+
+
 	def index
 		@holder = Holder.new
 		@holders = Holder.find_all_by_user_id(current_user.id)
@@ -12,8 +15,10 @@ class HoldersController < ApplicationController
 		@holder = Holder.new(params[:holder])
 		@holder.user_id = current_user.id
 		if @holder.save
-			flash[:success] = "Set Created!"
-      redirect_to holders_path
+      respond_to do |format|
+        format.html { redirect_to holders_path, flash: {success: "Set Created!"} }
+        format.js
+      end
 		else
 			render 'new'
 		end
@@ -27,72 +32,31 @@ class HoldersController < ApplicationController
 		@holder = Holder.find(params[:id])
     if @holder.update_attributes(params[:holder])
   		respond_to do |format|
-    		format.html { redirect_to holders_path } #, flash[:success] = "holder updated")
-    		# format.js
-  		end
+        format.html { redirect_to holders_path, flash: {success: "Set Updated!"} }
+        format.js
+      end
 		else
       render 'edit'
     end
 	end
 
 	def show
+    @holder = Holder.find(params[:id])
+    current_user = User.find_by_remember_token(cookies[:remember_token])
+    if current_user.id != @holder.user_id
+          redirect_to holders_path
+    end
 		@holder = Holder.find(params[:id])
 		@questions = Question.find_all_by_holder_id(@holder)
 		@question = Question.new
 	end
+	
 
-	def generate
-
-
-
-
-		@holder = Holder.find(params[:holder_id])
-		@count = params[:count].to_i
-		questions = Question.find_all_by_holder_id(@holder)
-
-		##Generate Bingo Cards
-		@bingo_list = questions.shuffle
-	  @cards = []
-		@count.times do |count|
-			card = questions.shuffle
-			short_questions = card[0..24]
-			@cards << short_questions
-		end
-
-		##Generate WorkSheets
-		worksheet_questions = questions.shuffle
-		question_count = worksheet_questions.length
-		@questions_array = []
-
-		question_count.times do |num|
-			question = worksheet_questions[num].question
-			answers = [worksheet_questions[num].answer]
-			taken_ids = [worksheet_questions[num].id]
-
-			until answers.length == 4
-				num = rand(0..24)
-				if !taken_ids.include?(num)
-					taken_ids << num
-					answers << worksheet_questions[num].answer
-				end
-			end
-
-			@questions_array << [question, answers.shuffle].flatten!
-
-		end
-
-			respond_to do |format|
-      format.html
-      format.pdf do
-        render :pdf => "file_name"
-      end
-    end
-	end
 
 	def destroy
-  	Holder.find(params[:id]).destroy
-    flash[:success] = "Set destroyed."
-    redirect_to holders_path
+  		Holder.find(params[:id]).destroy
+    	flash[:success] = "Set destroyed."
+    	redirect_to holders_path
 	end
 
 

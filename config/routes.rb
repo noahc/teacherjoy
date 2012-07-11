@@ -9,11 +9,12 @@ Teacherjoy::Application.routes.draw do
   root :to => 'pages#home'
 
   match '/signup',  to: 'users#new'
+  match '/edit',    to: 'users#edit'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
-  match '/generate',to: 'holders#generate'
   match '/about',   to: 'pages#about'
   match '/contact', to: 'pages#contact'
+  match 'generate', to: 'holders#generate'
 
 
   # The priority is based upon order of creation:

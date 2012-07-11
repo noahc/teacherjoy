@@ -1,4 +1,5 @@
 <%= form_for(@question)  do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
 
 	<%= f.label :question %>
 	<%= f.text_field :question,  :cols => 125, :rows => 4  %>

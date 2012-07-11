@@ -8,7 +8,9 @@ gem 'bootstrap-sass', '~> 2.0.3'
 gem "turn", "~> 0.9.5"
 gem "minitest", "~> 3.0.1"
 gem 'bcrypt-ruby', '~> 3.0.0'
-gem 'wicked_pdf'
+gem 'prawn'
+gem 'prawnto'
+gem 'thin'
 
 # Gems used only for assets and not required
 # in production environments by default.
