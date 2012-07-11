@@ -1,11 +1,14 @@
 <%= form_for(@holder) do |f| %> 
 	<%= render 'shared/error_messages', object: f.object %>
 
-	<%= f.label :name %>
-	<%= f.text_field :name %> 
+  <%= f.label :name %>
+  <%= f.text_field :name, size: 75 %> 
 
-	<%= f.label :description %>
-	<%= f.text_field :description %> 
+  <%= f.label :description %>
+  <%= f.text_area :description, cols: 100, rows: 7 %> 
 
-	<%= f.submit "Create My Set"%> 
+  <%= f.label "Student Count" %>
+  <%= f.text_field :prints, cols: 5%> 
+
+	<%= f.submit "Update Set"%> 
 <% end %>

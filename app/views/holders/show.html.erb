@@ -13,19 +13,7 @@
         </a>
         <ul class="dropdown-menu menupadding">
           <li>
-           <%= form_for(question) do |f| %>
-            <%= render 'shared/error_messages', object: f.object %>
-
-            <%= f.label :question %>
-            <%= f.text_field :question,  :cols => 125, :rows => 4  %>
-      
-            <%= f.label :answer %>
-            <%= f.text_field :answer,  :cols => 140 %>
-
-            <%= f.hidden_field :holder_id, :value => @holder.id %>
-            <br />
-            <%= f.submit "edit Question", remote: true %>
-          <% end %>
+           <%= render 'questions/form' %>
           </li>
         </ul>
       </li>
@@ -36,24 +24,14 @@
       <% end %>
      <% end %>
     </div>
-    
   </div>
   <div class="span3">
-      <%= link_to "Generate Activity Worksheets(PDF)", holder_path(@holder, :format => 'pdf'), class: "btn btn-primary btn-large" %>
-     <h3>Add a Question</h3>
-     <%= form_for(@question)  do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-
-      <%= f.label :question %>
-      <%= f.text_field :question,  :cols => 125, :rows => 4  %>
-      
-      <%= f.label :answer %>
-      <%= f.text_field :answer,  :cols => 140 %>
-
-      <%= f.hidden_field :holder_id, :value => @holder.id %>
-      <br />
-
-      <%= f.submit "Create Question" %>
+    <% if @questions.count < 25  %>
+    <p>Please add <%= 25 - @questions.count  %> more questions so that we can generate your PDF</p>
+    <% else %>
+    <%= link_to "Generate Activity Worksheets(PDF)", holder_path(@holder, :format => 'pdf'), class: "btn btn-primary btn-large" %>
     <% end %>
+     <h3>Add a Question</h3>
+        <%= render 'questions/form' %>
   </div>
 </div>

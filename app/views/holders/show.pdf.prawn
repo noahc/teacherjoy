@@ -74,6 +74,42 @@ end
 
 #answer key here
 
+num = 1
+next_count = 0
+# count.times do |count|
+pdf.start_new_page
+pdf.text "ANSWER KEY", size: 18
+pdf.text "Each Students Worksheet Will have the same questions, with the ansewers in a different order. This is not a bug, but a feature to prevent cheating", size: 8
+pdf.move_down 10
+
+while next_count < set_list.count
+	pdf.move_down 10
+	pdf.text "Question Set: #{num}"
+	5.times do |x|
+		question = set_list[next_count]
+		answers = [question[1], question[2],question[3],question[4]]
+		pdf.text "#{question[0]}", size: 9 
+		pdf.text  "#{answers[0]}", size: 10
+		pdf.move_down 3
+		next_count += 1
+	end
+
+	if set_list.count - next_count % 5 != 0
+		question = set_list[next_count]
+		answers = [question[1], question[2],question[3],question[4]]
+		pdf.text "#{question[0]}", size: 9 
+		pdf.text  "#{answers[0]}", size: 10
+		pdf.move_down 3
+		next_count += 1
+	end
+	num += 1
+end
+
+
+
+
+
+
 count.times do |count|
 
 
