@@ -22,6 +22,7 @@ group :test, :development do
 end
 
 group :production do
+  ruby "1.9.3"
   gem 'pg'
 end
 
