@@ -1,7 +1,9 @@
 <div class="row">
-  <div class="span8">
+  <div class="span6">
     <% if @questions.empty? %>
+       <div class="questions">
       <h3>Let's add some questions</h3>
+      <p>Time to add your first questions to this set. Simply add a question and the answer and once you've added enough, we'll be able to generate the class room activities and worksheets for you.<p>
     <% else %>
     <h3>Questions List</h3>
     <div class="questions">
@@ -21,13 +23,17 @@
       <br />
       <b><%= question.answer %></b>
       <hr>
+    
       <% end %>
      <% end %>
-    </div>
+  </div>
   </div>
   <div class="span3">
+   
     <% if @questions.count < 25  %>
-    <p>Please add <%= 25 - @questions.count  %> more questions so that we can generate your PDF</p>
+     <div class="alert notice">
+    <p>Please add <b><%= 25 - @questions.count  %></b> more questions so that we can generate your PDF</p>
+  </div>
     <% else %>
     <%= link_to "Generate Activity Worksheets(PDF)", holder_path(@holder, :format => 'pdf'), class: "btn btn-primary btn-large" %>
     <% end %>
