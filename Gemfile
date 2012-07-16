@@ -9,7 +9,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'prawn'
 gem 'prawnto'
 gem 'heroku'
-gem 'sequel'
+gem 'thin'
 
 
 group :development do
@@ -20,7 +20,7 @@ end
 group :test, :development do
   gem "turn", "~> 0.9.5"
   gem "minitest", "~> 3.0.1"
-  gem 'thin'
+ 
 end
 
 group :production do
