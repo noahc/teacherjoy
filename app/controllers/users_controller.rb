@@ -20,6 +20,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = User.find_by_remember_token(cookies[:remember_token])
     if @user.update_attributes(params[:user])
       flash[:success] = "Profile updated"
       sign_in @user
