@@ -1,56 +1,44 @@
 <div class="row">
-
-<div class="span6">
-<% if @holders.empty?%>
-  <h3>Time to Create your First Set</h3>
-  <p>A set is a container for questions you'd like to group together. They might "American Presidents of the 20th century" or "Fun Facts About Mammals".
-  Don't worry too much about getting this part right. You can always edit it later.</p>
-
-  <p>Student Count is how many students you'll be printing off worksheets for. You can change this later, but usually it's best to do a few more than you think you'll need</p>
-<% else %>
-<div id="holders">
-  <% @holders.each do |holder| %>
-  <b><%= holder.name %></b> 
-  <li class="dropdown" id="<%= holder.id%>" class="editmenu">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="<%= holder.id%>">
-      <small>Edit</small>
-    </a>
-    <ul class="dropdown-menu menupadding">
+  <div class="span6">
+  <% if @holders.empty?%>
+    <h3>Time to Create your First Set</h3>
+    <p>A set is a container for questions you'd like to group together. They might "American Presidents of the 20th century" or "Fun Facts About Mammals".
+    Don't worry too much about getting this part right. You can always edit it later.</p>
+    <p>Student Count is how many students you'll be printing off worksheets for. You can change this later, but usually it's best to do a few more than you think you'll need</p>
+  <% else %>
+    <% @holders.each do |holder| %>
+      <b><%= holder.name %></b> 
+      <li class="dropdown" id="<%= holder.id%>" class="editmenu">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="<%= holder.id%>">
+        <small>Edit</small>
+      </a>
+      <ul class="dropdown-menu menupadding">
       <li>
         <%= form_for(holder) do |f| %> 
-      <%= f.label :name %>
-  <%= f.text_field :name, size: 75 %> 
+          <%= f.label :name %>
+          <%= f.text_field :name, size: 75 %> 
 
-  <%= f.label :description %>
-  <%= f.text_area :description, cols: 100, rows: 7 %> 
+          <%= f.label :description %>
+          <%= f.text_area :description, cols: 100, rows: 7 %> 
 
-  <%= f.label "Student Count" %>
-  <%= f.text_field :prints, cols: 5%> 
-  <br>
+          <%= f.label "Student Count" %>
+          <%= f.text_field :prints, cols: 5%> 
+          <br>
           <br />
           <%= f.submit "Save Edit", remote: true%> 
         <% end %>
+        </li>
+      </ul>
       </li>
-    </ul>
-  </li>
-  <li class="dropdown">| <%= link_to "View", holder_path(holder) %></li>
-  <li class="dropdown">| <%= link_to "Delete", holder_path(holder), method: "delete"%></li>
-    <p class="copycount">Prints copies for <%= holder.prints %> students</p>
-    <p><%= holder.description %></p>
-  <hr>
-<% end %>
-
+      <li class="dropdown">| <%= link_to "View", holder_path(holder) %></li>
+      <li class="dropdown">| <%= link_to "Delete", holder_path(holder), method: "delete"%></li>
+        <p class="copycount">Prints copies for <%= holder.prints %> students</p>
+        <p><%= holder.description %></p>
+      <hr>
+    <% end %>
+  <% end %>
 </div>
-
-<% end %>
-
-
-  
-    
-  </div>
-
-  <div class="span">
+<div class="span">
     <%= render 'create_set' %>
 </div>
-
 </div>

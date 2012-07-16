@@ -41,19 +41,15 @@ class HoldersController < ApplicationController
     @holder = Holder.find(params[:id])
     current_user = User.find_by_remember_token(cookies[:remember_token])
     if current_user.id != @holder.user_id
-          redirect_to holders_path
+      redirect_to holders_path
     end
 		@questions = Question.find_all_by_holder_id(@holder)
 		@question = Question.new
 	end
 	
-
-
 	def destroy
-  		Holder.find(params[:id]).destroy
-    	flash[:success] = "Set destroyed."
-    	redirect_to holders_path
+		Holder.find(params[:id]).destroy
+  	flash[:success] = "Set destroyed."
+  	redirect_to holders_path
 	end
-
-
 end

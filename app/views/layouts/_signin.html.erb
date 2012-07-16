@@ -1,10 +1,7 @@
 <%= form_for(:session, url: sessions_path) do |f| %> 
-	
-
 	<%= f.text_field :email, :placeholder => "email" %> 
 	<br />
 	<%= f.password_field :password, :placeholder => "Password" %>
 	<br />
-
 	<%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
 <% end %>

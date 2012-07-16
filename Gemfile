@@ -8,17 +8,19 @@ gem 'bootstrap-sass', '~> 2.0.3'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'prawn'
 gem 'prawnto'
-gem 'thin'
 gem 'heroku'
+gem 'sequel'
 
 
 group :development do
   gem 'sqlite3', '1.3.5'
+  gem 'pg'
 end
 
 group :test, :development do
   gem "turn", "~> 0.9.5"
   gem "minitest", "~> 3.0.1"
+  gem 'thin'
 end
 
 group :production do

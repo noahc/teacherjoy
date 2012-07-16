@@ -5,12 +5,12 @@ class QuestionsController < ApplicationController
 	end
 
 	def show
-  		@question = Question.find(params[:id])
-  		@holder = Holder.find_by_id(@question.holder.id)
-      current_user = User.find_by_remember_token(cookies[:remember_token])
-      if current_user.id != @holder.user_id
-        redirect_to holders_path
-      end
+  	@question = Question.find(params[:id])
+  	@holder = Holder.find_by_id(@question.holder.id)
+    current_user = User.find_by_remember_token(cookies[:remember_token])
+    if current_user.id != @holder.user_id
+      redirect_to holders_path
+    end
 	end
 
 	def edit
@@ -19,16 +19,11 @@ class QuestionsController < ApplicationController
 
 	def update
 		@question = Question.find(params[:id])
-    	if @question.update_attributes(params[:question])
-    		redirect_to holder_path(@question.holder_id) 
-  		# respond_to do |format|
-    		# format.html {} #, flash[:success] = "holder updated")
-			 
-    # 		format.js
-  		# end
+    if @question.update_attributes(params[:question])
+    	redirect_to holder_path(@question.holder_id) 
 		else
-      		render 'edit'
-    	end
+      render 'edit'
+    end
 	end
 
 	def new
@@ -47,8 +42,8 @@ class QuestionsController < ApplicationController
 	end
 
 	def destroy
-  		question = Question.find(params[:id]).destroy
-    	flash[:success] = "Question destroyed."
-    	redirect_to holder_path(question.holder_id)
+  	question = Question.find(params[:id]).destroy
+    flash[:success] = "Question destroyed."
+    redirect_to holder_path(question.holder_id)
 	end
 end

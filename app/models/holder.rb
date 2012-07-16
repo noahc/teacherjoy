@@ -10,7 +10,7 @@ class Holder < ActiveRecord::Base
   validates :user_id, presence: true
   validates :prints, presence: true
 
-   validates_numericality_of :prints, greater_than: 0, less_than: 100
+  validates_numericality_of :prints, greater_than: 0, less_than: 100
 end
 # == Schema Information
 #
