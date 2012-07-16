@@ -1,5 +1,6 @@
 <div class="row">
   <div class="span6">
+    <%= link_to "Back to #{@holder.name}", holders_path %>
     <% if @questions.empty? %>
       <div class="questions">
       <h3>Let's add some questions</h3>
@@ -15,7 +16,17 @@
         </a>
         <ul class="dropdown-menu menupadding">
           <li>
-            <%= render 'questions/form' %>
+            <%= form_for(question)  do |f| %>
+<%= f.label :question %>
+<%= f.text_field :question,  :cols => 125, :rows => 4  %>
+      
+<%= f.label :answer %>
+<%= f.text_field :answer,  :cols => 140 %>
+
+<%= f.hidden_field :holder_id, :value => @holder.id %>
+<br />
+<%= f.submit "Update" %>
+<% end %>
           </li>
         </ul>
         </li>
