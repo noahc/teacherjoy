@@ -3,13 +3,20 @@
 #
 # Examples:
 #
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+  # cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+  # Mayor.create(name: 'Emanuel', city: cities.first)
 
-
-Holder.create(id: 1, user_id: 1, name: "Presidents Of The United States of America", description: "Presidential Trivia")
-Holder.create(id: 2, user_id: 1, name: "My Nephews Favorite Kid Jokes", description: "A list of kid jokes my nephew loves")
-
+demo_accounts = User.create([{name: "canterburry@example.com", email: "canterburry@example.com", password: "demoaccount", password_confirmation: "demoaccount"},
+														 {name: "site5@example.com", email: "site5@example.com", password: "demoaccount", password_confirmation: "demoaccount"},
+														 {name: "tgcdev1@example.com", email: "tgcdev1@example.com", password: "demoaccount", password_confirmation: "demoaccount"},
+														 {name: "dmp@example.com", email: "dmp@example.com", password: "demoaccount", password_confirmation: "demoaccount"},
+														 {name: "dolphin@example.com", email: "dolphin@example.com", password: "demoaccount", password_confirmation: "demoaccount"},
+														 {name: "menubaby@example.com", email: "menubaby@example.com", password: "demoaccount", password_confirmation: "demoaccount"},
+														 {name: "communitylend@example.com", email: "communitylend@example.com", password: "demoaccount", password_confirmation: "demoaccount"},
+														 {name: "enliken@example.com", email: "enliken@example.com", password: "demoaccount", password_confirmation: "demoaccount"},
+														 {name: "artlogic@example.com", email: "artlogic@example.com", password: "demoaccount", password_confirmation: "demoaccount"},
+														 {name: "monkey@example.com", email: "monkey@example.com", password: "demoaccount", password_confirmation: "demoaccount"}
+														 ])
 president_questions = [
 	["Which President was the first president of the United States of America?", "George Washington"],
 	["Which President was the Father of John Quincy Adams?", "John Adams"],
@@ -57,9 +64,11 @@ president_questions = [
 ]
 
 
-
-president_questions.each do |array|
-	question = Question.create(holder_id: 1, question: array[0], answer: array[1])
+demo_accounts.each do |user|
+	holder = Holder.create(user_id: user.id, name: "Presidents Of The United States of America", description: "Presidential Trivia", prints: 2)
+	president_questions.each do |array|
+		question = Question.create(holder_id: holder.id, question: array[0], answer: array[1])
+	end
 end
 
 
